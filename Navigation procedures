@@ -1,0 +1,20 @@
+######################################################
+#  navigation procedures            
+########################################################
+
+# hides sign up window
+def close_sign_window():
+    sign_window.hide()
+    app.show()
+
+def open_password():
+    app.hide()
+    forgot_window.show()
+
+def close_forgot_window():
+    forgot_window.hide()
+    app.show()
+#
+def Open_Signup():
+    sign_window.show()
+    app.hide()
