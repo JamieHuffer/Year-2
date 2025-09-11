@@ -1,0 +1,66 @@
+# change password window
+#
+forgot_window = Window(app, title="Forgot Password", height=400, bg="#076e33") 
+forgot_box = Box(forgot_window, layout="grid")
+forgotblank0 = Text(forgot_box, text="            ", grid=[5,0])
+forgotblank1 = Text(forgot_box, text="            ", grid=[5,0])
+forgotblank2 = Text(forgot_box, text="            ", grid=[5,0])
+forgotblank3 = Text(forgot_box, text="            ", grid=[5,1])
+forgotblank4 = Text(forgot_box, text="            ", grid=[5,1])
+forgot_txt2 = Text(forgot_box, text="Enter your Email", align="left", grid=[2,5], size=15)
+forgot_txtbox2 = TextBox(forgot_box, hide_text=False, grid=[3,5], width=30)
+
+
+forgot_box2 = Box(forgot_window, layout="grid")
+forgotblank5 = Text(forgot_box, text="            ", grid=[7,0])
+forgotblank6 = Text(forgot_box, text="            ", grid=[7,0])
+forgotblank7 = Text(forgot_box, text="            ", grid=[7,0])
+forgotblank8 = Text(forgot_box, text="            ", grid=[7,1])
+forgotblank9 = Text(forgot_box, text="            ", grid=[7,1])
+forgot_txt3 = Text(forgot_box, text="Enter a new password", align="left", grid=[2,7], size=15)
+forgot_txtbox3 = TextBox(forgot_box, hide_text=True, grid=[3,7], width=30)
+
+
+forgot_box3 = Box(forgot_window, layout="grid")
+forgotblank10 = Text(forgot_box, text="            ", grid=[9,0])
+forgotblank11 = Text(forgot_box, text="            ", grid=[9,0])
+forgotblank12 = Text(forgot_box, text="            ", grid=[9,0])
+forgotblank13 = Text(forgot_box, text="            ", grid=[9,1])
+forgotblank14 = Text(forgot_box, text="            ", grid=[9,1])
+forgot_txt4 = Text(forgot_box, text="Confirm your password", align="left", grid=[2,9], size=15)
+forgot_txtbox4 = TextBox(forgot_box, hide_text=True, grid=[3,9], width=30)
+
+forgot_pw_box = Box(forgot_window, width = "fill", align="button")
+forgot_pw_button = PushButton(forgot_pw_box, text="Confirm Password", align = "Bottom", command = lambda: forgot_password(forgot_txtbox2.value, forgot_txtbox3.value))
+forgot_pw_button.bg = "#0989eb"
+
+forgotpw_exit_box = Box(forgot_window, width="fill", align="bottom")
+forgotpw_exit_button = PushButton(forgotpw_exit_box, text="Back", command=close_forgot_window)
+forgotpw_exit_button.bg = "#8fb39e"
+
+forgot_window.hide() #hide until needed
+
+
+def forgot_password(myemail, mypassword):
+
+    if forgot_txtbox2.value == "":
+        info("Incorrect", "Please enter your email")
+    elif forgot_txtbox3.value == "":
+        info("Incorrect", "Please enter your password")
+    elif forgot_txtbox4.value == "":
+        info("Incorrect", "Please enter your password")
+    elif forgot_txtbox3.value != forgot_txtbox4.value:
+        info("Incorrect", "Passwords do not match")
+    elif "@" not in forgot_txtbox2.value:
+        info("Incorrect", "Email does not exist")
+    else: 
+        print(myemail)
+        query = "SELECT * from User WHERE user_email = ?"
+        rows = query_database(database_file, query, (str(myemail),)) # SQL query to retrieve username and password from database 
+        if len(rows) == 0:
+            info("Error", "Invalid Email") 
+        else:
+            update = "UPDATE User SET user_password = ? WHERE user_email = ?"
+            execute_sql(database_file, update, (mypassword, myemail)) # SQL query to update password to new one inputted by user
+            info("Success", "Password is updated")
+
