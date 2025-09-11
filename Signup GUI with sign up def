@@ -1,0 +1,85 @@
+def signup_create_account():
+    # Procedure to create an account
+    username = sign_txtbox1.value
+    firstname = sign_txtbox4.value
+    surname = sign_txtbox5.value
+    password = sign_txtbox2.value
+    email = sign_txtbox6.value
+    confirmpw = sign_txtbox3.value
+
+    if username.isalpha() == False:
+            info("Error", "Username cannot contain numbers, special characters or left blank") # Checks if username has no numbers or special characters (type check)
+    elif firstname.isalpha() == False:
+            info("Error", "Firstname cannot contain numbers, special characters or left blank") # Checks if first name has no numbers or special characters (type check)
+    elif surname.isalpha() == False:
+            info("Error", "Surname cannot contain numbers, special characters or left blank")   #  checks if surname has no numbers or special characters (type check)
+    elif '@' not in email:
+            info("Error", "Invalid email")
+    elif len(password) < 4:
+        info("Error", "Password must be between 4 and 18 characters")
+    elif len(confirmpw) > 18:
+        info("Error", "Password must be between 4 and 18 characters")
+    elif confirmpw != password:
+        info("Error", "Passwords do not match")
+   
+    # add more validation here  
+    #
+    #
+    else:
+            query = "INSERT INTO User (user_name, user_firstname, user_surname, user_password, user_email) VALUES (?, ?, ?, ?, ?)"
+            execute_sql(database_file, query, (username, firstname, surname, password, email)) # SQL query to insert new user into User
+            info("Success", "Account successfully created")
+            sign_window.hide()
+            app.show()
+#
+
+
+  # Sign up window
+  #
+  sign_window = Window(app, title="Sign up", height=400, bg="#076e33")        #dark green
+  #
+  sign_exit_box = Box(sign_window, width="fill", align="top")
+  sign_exit_button = PushButton(sign_exit_box, text="Back", align="left", command=close_sign_window)
+  sign_exit_button.bg = "#8fb39e"
+
+  #
+  #
+  sign_create_box = Box(sign_window, width="fill", align="top")
+  sign_exit_button.bg = "#8fb39e"
+
+
+  #
+  sign_toptxt = Text(sign_window, text="MY BUSINESS TECHNOLOGIES", size=20)
+  sign_toptxt2 = Text(sign_window, text="Please Enter Details", size=15) # Creating signup window
+
+  sign_box = Box(sign_window, layout="grid")
+  sign_blanktxt1 = Text(sign_box, text="            ", grid=[1,0])
+  sign_txt1 = Text(sign_box, text="Enter Username", align="left", grid=[0,0], size=15)
+  sign_txtbox1 = TextBox(sign_box, hide_text=False, grid=[2,0], width=30)
+  sign_txtbox1.bg = '#8fb39e' # Creating a box with a grid layout and putting enter username textbox into box
+  
+  sign_blanktxt2 = Text(sign_box, text="            ", grid=[1,1])
+  sign_txt2 = Text(sign_box, text="Enter Password", align="left", grid=[0,1], size=15)
+  sign_txtbox2 = TextBox(sign_box, hide_text=True, grid=[2,1], width=30)
+
+  sign_blanktxt3 = Text(sign_box, text="            ", grid=[1,2])
+  sign_txt3 = Text(sign_box, text="Confirm Password", align="left", grid=[0,2], size=15)
+  sign_txtbox3 = TextBox(sign_box, hide_text=True, grid=[2,2], width=30)
+
+  sign_blanktxt4 = Text(sign_box, text="            ", grid=[1,3])
+  sign_txt4 = Text(sign_box, text="Enter First Name", align="left", grid=[0,3], size=15)
+  sign_txtbox4 = TextBox(sign_box, hide_text=False, grid=[2,3], width=30)
+
+  sign_blanktxt5 = Text(sign_box, text="            ", grid=[1,4])
+  sign_txt5 = Text(sign_box, text="Enter Surname", align="left", grid=[0,4], size=15)
+  sign_txtbox5 = TextBox(sign_box, hide_text=False, grid=[2,4], width=30)
+
+  sign_blanktxt6 = Text(sign_box, text="            ", grid=[1,5])
+  sign_txt6 = Text(sign_box, text="Enter Email", align="left", grid=[0,5], size=15)
+  sign_txtbox6 = TextBox(sign_box, hide_text=False, grid=[2,5], width=30)
+
+  sign_blanktxt7 = Text(sign_box, text="          ", grid=[1,6])
+  sign_create_button = PushButton(sign_window, text="Create", command=signup_create_account)
+  #
+  #
+  sign_window.hide() # hide until needed
