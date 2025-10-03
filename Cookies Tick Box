@@ -1,0 +1,7 @@
+bottombox = Box(app, layout="grid", grid=[0,2])  #  Added grid position
+cookie_box = Box(app, layout="horizontal", grid=[0,4], width="fill", height=60)
+cookie_box.bg = "#164C69"
+Text(cookie_box, text="I consent to the use of cookies", size=12)       #cookies
+
+login_cookie_check = CheckBox(cookie_box, text="I agree", command=cookie_checked)
+login_cookie_check.bg = "#164C69"
