@@ -1,0 +1,5 @@
+def cookie_checked():
+    if login_cookie_check.value == 1:
+        info("Cookies", "put cookies here") #cookies message
+    elif login_cookie_check.value == "":
+        info("Cookies", "You must accept cookies before proceding")
