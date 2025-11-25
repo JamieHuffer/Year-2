@@ -1,0 +1,20 @@
+# star rating
+review_starbox = Box(review_window, layout = "grid",width="fill")
+review_formatlines = Text(review_starbox, text = "",grid=[0,1])
+review_formatlines = Text(review_starbox, text = "                                                                                            ",grid=[0,2])
+review_star1 = Text(review_starbox, text = "★",grid=[1,2])
+review_star1.text_size = 40
+review_star2 = Text(review_starbox, text = "★",grid=[2,2])
+review_star2.text_size = 40
+review_star3 = Text(review_starbox, text = "★",grid=[3,2])
+review_star3.text_size = 40
+review_star4 = Text(review_starbox, text = "★",grid=[4,2])
+review_star4.text_size = 40
+review_star5 = Text(review_starbox, text = "★",grid=[5,2])
+review_star5.text_size = 40
+#
+review_star1.when_clicked = starclick1
+review_star2.when_clicked = starclick2
+review_star3.when_clicked = starclick3
+review_star4.when_clicked = starclick4
+review_star5.when_clicked = starclick5
