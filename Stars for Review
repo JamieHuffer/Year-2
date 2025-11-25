@@ -1,0 +1,49 @@
+def starclick1():
+    # when star 1 is selected, star 1 lights up
+    global starselected
+    review_star1.text_color = "yellow"
+    review_star2.text_color = "black"
+    review_star3.text_color = "black"
+    review_star4.text_color = "black"
+    review_star5.text_color = "black"
+    starselected = 1
+
+def starclick2():
+    # when star 2 is selected, star 1/2 lights up
+    global starselected
+    review_star1.text_color = "yellow"
+    review_star2.text_color = "yellow"
+    review_star3.text_color = "black"
+    review_star4.text_color = "black"
+    review_star5.text_color = "black"
+    starselected = 2
+
+def starclick3():
+    # when star 3 is selected, star 1/2/3 lights up
+    global starselected
+    review_star1.text_color = "yellow"
+    review_star2.text_color = "yellow"
+    review_star3.text_color = "yellow"
+    review_star4.text_color = "black"
+    review_star5.text_color = "black"
+    starselected = 3
+
+def starclick4():
+    # when star 4 is selected, star 1/2/3/4 lights up
+    global starselected
+    review_star1.text_color = "yellow"
+    review_star2.text_color = "yellow"
+    review_star3.text_color = "yellow"
+    review_star4.text_color = "yellow"
+    review_star5.text_color = "black"
+    starselected = 4
+
+def starclick5():
+    # when star 5 is selected, star 1/2/3/4/5 lights up
+    global starselected
+    review_star1.text_color = "yellow"
+    review_star2.text_color = "yellow"
+    review_star3.text_color = "yellow"
+    review_star4.text_color = "yellow"
+    review_star5.text_color = "yellow"
+    starselected = 5
