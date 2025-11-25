@@ -1,0 +1,16 @@
+def review_valid(review_text):
+    # Check if a star is selected
+    if starselected is None:
+        info("Error", "Please select a star rating before submitting your review.")
+        return  # Exit the function if no star is selected
+
+    # Check if the review text is empty
+    if review_text == "":
+        info("Error", "Please enter your review or click the back button.")
+
+    else:
+        query = "INSERT INTO review_table (review_stars, review_comments, userID) VALUES (?, ?, ?)"  # SQL to add to the DB
+        execute_sql(database_file, query, (starselected, review_text, user_LoggedIn))
+        info("Success", "Thank you, your review has been accepted.")
+        review_window.hide()
+        dashboard_window.show()
