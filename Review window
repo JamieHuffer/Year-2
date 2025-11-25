@@ -1,0 +1,18 @@
+review_window = Window(app, title="Review Window", height=650, width=1050, bg="#164C69") 
+review_box = Box(review_window, layout="grid")
+reviewblank1 = Text(review_box, text="            ", grid=[7,1])
+reviewblank2 = Text(review_box, text="            ", grid=[7,1])
+review_txt2 = Text(review_box, text="Leave a review(Opional)", align="left", grid=[2,7], size=15)        #creates a box with grid layout and putting leave a review textbox into box for the user to type
+review_txtbox1 = TextBox(review_box, hide_text=False, grid=[3,7], width=30, multiline = True, height = 5)
+#button
+review_box = Box(review_window, width = "fill", align="button")
+review_confirm_button = PushButton(review_box, text="Confirm review", align = "Bottom", command = lambda: review_valid(review_txtbox1.value))
+review_confirm_button.bg = "#1295AB"        #creates pushbutton that says "confirm review" that saves the user reviews
+
+back_box = Box(review_window, width = "fill", align="button")
+review_back_button = PushButton(back_box, text="Back", align = "Top", command = lambda: review_back)
+review_back_button.bg = "#1295AB"       #creates a pushbutton that says "back" and it will take the user back to the dashboard window
+
+add_top_right_image(review_window, "TechTrust_optimized.png")   #image
+
+review_window.hide()
